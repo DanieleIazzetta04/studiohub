@@ -352,6 +352,50 @@ button { font-family: inherit; cursor: pointer; }
   max-width: 100%;
 }
 
+/* Override inline max-width: 900px wrappers used by Week pages */
+.big-card .big-card-inner > div {
+  max-width: none !important;
+  width: 100% !important;
+}
+
+/* Make markdown content fluid on small screens */
+.big-card .markdown-body img,
+.big-card .markdown-body pre,
+.big-card .markdown-body code {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.big-card .markdown-body table {
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+@media (min-width: 769px) {
+  .big-card .markdown-body table {
+    display: table;
+    white-space: normal;
+  }
+}
+
+/* Reduce font sizes on mobile inside big-card */
+@media (max-width: 600px) {
+  .big-card .markdown-body { font-size: 14px; }
+  .big-card .markdown-body h1 { font-size: 1.6rem; }
+  .big-card .markdown-body h2 { font-size: 1.3rem; }
+  .big-card .markdown-body h3 { font-size: 1.1rem; }
+  .big-card .page-title { font-size: 1.6rem !important; }
+  .big-card .macro-title { font-size: 1.6rem; }
+  .big-card .graph-row {
+    flex-direction: column;
+  }
+  .big-card .graph-row svg {
+    width: 100%;
+    height: auto;
+  }
+}
+
 /* ═══════════════════════════════════════════════════════════════
    PLACEHOLDER PAGE (Mate Fin / Pian Contr)
    ═══════════════════════════════════════════════════════════════ */

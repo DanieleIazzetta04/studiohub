@@ -1,0 +1,469 @@
+/* ═══════════════════════════════════════════════════════════════
+   STUDIOHUB — Design System
+   Reference: 1728px desktop, fluid down to mobile
+   ═══════════════════════════════════════════════════════════════ */
+
+:root {
+  /* Subject colors */
+  --color-egi: #7251B5;
+  --color-macro: #45ABD9;
+  --color-matefin: #2B9151;
+  --color-piancontr: #FDB828;
+  --color-studiohub: #7DB85B;
+
+  /* Palette extended (for future subjects) */
+  --c-pink: #E38CB7;
+  --c-blue: #45ABD9;
+  --c-green: #2B9151;
+  --c-brown: #5A2F0F;
+  --c-orange: #F48233;
+  --c-tan: #C8AD76;
+  --c-black: #000000;
+  --c-purple: #7251B5;
+  --c-blue-dark: #2563EB;
+  --c-green-light: #7DB85B;
+  --c-orange-dark: #B45309;
+  --c-red: #E32B4A;
+  --c-yellow: #FDB828;
+  --c-grey: #D9D9D9;
+
+  /* Neutrals */
+  --bg-page: #FFFFFF;
+  --bg-topbar: rgba(249, 249, 249, 0.98);
+  --search-placeholder: #8E8E93;
+  --arrow-grey: #D9D9D9;
+
+  /* Layout (desktop reference 1728px) */
+  --content-max: 1600px;
+  --side-padding-desktop: 64px;
+  --side-padding-tablet: 32px;
+  --side-padding-mobile: 16px;
+  --top-padding: 32px;
+  --bottom-padding: 64px;
+  --card-gap: 56px;
+  --card-row-gap: 32px;
+  --topbar-height: 141px;
+
+  /* Card dimensions */
+  --card-width-desktop: 358px;
+  --card-height: 80px;
+  --card-radius: 20px;
+  --card-shadow: 0px 3px 6px rgba(0, 0, 0, 0.08);
+  --card-shadow-hover: 0px 6px 16px rgba(0, 0, 0, 0.12);
+
+  /* Big card */
+  --bigcard-padding: 24px;
+  --bigcard-radius: 38px;
+  --bigcard-border: 2px solid rgba(0, 0, 0, 0.06);
+  --bigcard-shadow: 0px 12px 32px rgba(0, 0, 0, 0.12);
+
+  /* Search bar */
+  --search-radius: 10px;
+  --search-border: 0.5px solid rgba(0, 0, 0, 0.15);
+  --search-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+
+  /* Typography */
+  --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-title: 48px;
+  --font-card: 20px;
+  --font-search: 10px;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   RESET / BASE
+   ═══════════════════════════════════════════════════════════════ */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family);
+  background: var(--bg-page);
+  color: #1f2937;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a { text-decoration: none; color: inherit; }
+button { font-family: inherit; cursor: pointer; }
+
+/* ═══════════════════════════════════════════════════════════════
+   APP SHELL
+   ═══════════════════════════════════════════════════════════════ */
+
+.studiohub-app {
+  position: relative;
+  min-height: 100vh;
+  background: var(--bg-page);
+}
+
+.studiohub-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--top-padding) var(--side-padding-desktop) var(--bottom-padding);
+  gap: var(--card-row-gap);
+  margin-top: var(--topbar-height);
+  width: 100%;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   TOP BAR
+   ═══════════════════════════════════════════════════════════════ */
+
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  padding: 32px var(--side-padding-desktop) 16px;
+  gap: 12px;
+  background: var(--bg-topbar);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 100;
+}
+
+.topbar-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 55px;
+  width: 100%;
+}
+
+.topbar-back {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.15s;
+}
+
+.topbar-back:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.topbar-back:disabled {
+  cursor: default;
+  opacity: 0.5;
+}
+
+.topbar-back svg {
+  width: 14px;
+  height: 24px;
+}
+
+.topbar-title {
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: var(--font-title);
+  line-height: 58px;
+  text-align: center;
+  letter-spacing: -0.01em;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: calc(100% - 100px);
+}
+
+.topbar-title.weight-600 { font-weight: 600; }
+
+/* Search bar */
+.searchbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 8px;
+  gap: 8px;
+  width: 100%;
+  height: 32px;
+  background: #FFFFFF;
+  border: var(--search-border);
+  box-shadow: var(--search-shadow);
+  border-radius: var(--search-radius);
+}
+
+.searchbar svg {
+  width: 14px;
+  height: 14px;
+  color: var(--search-placeholder);
+  flex-shrink: 0;
+}
+
+.searchbar input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: var(--font-search);
+  line-height: 12px;
+  color: #1f2937;
+  background: transparent;
+}
+
+.searchbar input::placeholder {
+  color: var(--search-placeholder);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   GRID CARDS (subjects, weeks, sections)
+   ═══════════════════════════════════════════════════════════════ */
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--card-row-gap) var(--card-gap);
+  width: 100%;
+  max-width: var(--content-max);
+}
+
+.subject-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  gap: 8px;
+  height: var(--card-height);
+  background: #FFFFFF;
+  border: 1px solid var(--card-color, var(--color-egi));
+  box-shadow: var(--card-shadow);
+  border-radius: var(--card-radius);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  text-align: center;
+  user-select: none;
+}
+
+.subject-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--card-shadow-hover);
+}
+
+.subject-card-label {
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: var(--font-card);
+  line-height: 24px;
+  color: var(--card-color, var(--color-egi));
+  text-align: center;
+}
+
+/* Card disabled (placeholder / coming soon) */
+.subject-card.is-disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.subject-card.is-disabled:hover {
+  transform: none;
+  box-shadow: var(--card-shadow);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   BIG CARD (detail page wrapper)
+   ═══════════════════════════════════════════════════════════════ */
+
+.big-card {
+  width: 100%;
+  max-width: var(--content-max);
+  background: #FFFFFF;
+  border: var(--bigcard-border);
+  box-shadow: var(--bigcard-shadow);
+  border-radius: var(--bigcard-radius);
+  padding: var(--bigcard-padding);
+  overflow: hidden;
+}
+
+.big-card-inner {
+  width: 100%;
+  padding: 24px;
+}
+
+/* When big-card hosts existing macro/week content,
+   override their internal max-widths/padding so the
+   content fills the entire big card. */
+.big-card .markdown-body {
+  background: transparent;
+  box-shadow: none;
+  border: none;
+  padding: 0;
+  max-width: none;
+  width: 100%;
+}
+
+.big-card .macro-page {
+  max-width: none;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  padding-bottom: 0;
+}
+
+.big-card .content-section {
+  padding: 0;
+  margin-bottom: 2rem;
+  background: transparent;
+  box-shadow: none;
+  border: none;
+}
+
+.big-card .glass-panel {
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: none;
+  border: none;
+  border-radius: 0;
+}
+
+/* Make all content blocks (graphs, tables, callouts, sections) full-width */
+.big-card .macro-section,
+.big-card .graph-block,
+.big-card .formula-box,
+.big-card .callout,
+.big-card .case-study-grid,
+.big-card .conclusion-grid {
+  width: 100%;
+  max-width: none;
+}
+
+.big-card .markdown-body table {
+  width: 100%;
+  max-width: 100%;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   PLACEHOLDER PAGE (Mate Fin / Pian Contr)
+   ═══════════════════════════════════════════════════════════════ */
+
+.placeholder-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  max-width: var(--content-max);
+  padding: 80px 32px;
+  border-radius: var(--bigcard-radius);
+  background: #FFFFFF;
+  border: var(--bigcard-border);
+  box-shadow: var(--bigcard-shadow);
+  gap: 16px;
+}
+
+.placeholder-card h2 {
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 32px;
+  margin: 0;
+  color: var(--card-color, #1f2937);
+}
+
+.placeholder-card p {
+  font-family: var(--font-family);
+  font-size: 16px;
+  color: #6b7280;
+  margin: 0;
+  max-width: 480px;
+  line-height: 1.6;
+}
+
+.placeholder-card .badge {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: var(--card-color, #e5e7eb);
+  color: #FFFFFF;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 48px 24px;
+  color: #9ca3af;
+  font-size: 14px;
+  width: 100%;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Tablet: 3 cards per row */
+@media (max-width: 1280px) {
+  .cards-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .studiohub-page { padding: var(--top-padding) var(--side-padding-tablet) var(--bottom-padding); }
+  .topbar { padding: 24px var(--side-padding-tablet) 12px; }
+  .topbar-title { font-size: 36px; line-height: 44px; }
+}
+
+/* Tablet small: 2 cards per row */
+@media (max-width: 900px) {
+  .cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile: 1 card per row */
+@media (max-width: 600px) {
+  :root {
+    --topbar-height: 110px;
+    --card-radius: 14px;
+    --bigcard-radius: 20px;
+    --bigcard-padding: 12px;
+  }
+  .cards-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .studiohub-page {
+    padding: 16px var(--side-padding-mobile) 32px;
+    gap: 16px;
+  }
+  .topbar {
+    padding: 16px var(--side-padding-mobile) 10px;
+  }
+  .topbar-row { height: 40px; }
+  .topbar-title {
+    font-size: 22px;
+    line-height: 28px;
+    max-width: calc(100% - 60px);
+  }
+  .topbar-back { width: 28px; height: 28px; }
+  .topbar-back svg { width: 10px; height: 18px; }
+  .searchbar { height: 36px; }
+  .searchbar input { font-size: 14px; }
+  .subject-card { height: 64px; padding: 12px; }
+  .subject-card-label { font-size: 16px; line-height: 20px; }
+  .big-card-inner { padding: 8px; }
+  .placeholder-card { padding: 48px 24px; }
+  .placeholder-card h2 { font-size: 24px; }
+  .placeholder-card p { font-size: 14px; }
+}

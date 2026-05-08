@@ -7,6 +7,8 @@ import MacroSectionPage from './pages/MacroSectionPage';
 import MacroChapterDetailPage from './pages/MacroChapterDetailPage';
 import WeekDetailPage from './pages/WeekDetailPage';
 import PlaceholderPage from './pages/PlaceholderPage';
+import SimulazioniEGIHub from './pages/SimulazioniEGIHub';
+import SimulazioneEGIDetail from './pages/SimulazioneEGIDetail';
 
 import './index.css';
 import './styles/studiohub.css';
@@ -34,6 +36,16 @@ export default function App() {
         <Route
           path="/pianificazione-controllo"
           element={<PlaceholderPage title="Pianificazione e Controllo" color="#FDB828" />}
+        />
+
+        {/* Simulazioni EGI */}
+        <Route path="/simulazioni-egi" element={<SimulazioniEGIHub />} />
+        <Route path="/simulazioni-egi/:id" element={<SimulazioneEGIDetail />} />
+
+        {/* Simulazioni Macro - placeholder */}
+        <Route
+          path="/simulazioni-macro"
+          element={<PlaceholderPage title="Simulazioni di Macro" color="#F48233" />}
         />
 
         {/* Catch-all back to home */}

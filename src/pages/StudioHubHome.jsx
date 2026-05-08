@@ -8,6 +8,8 @@ const SUBJECTS = [
   { label: 'Macroeconomia', color: '#45ABD9', to: '/macro' },
   { label: 'Matematica Finanziaria', color: '#7DB85B', to: '/matematica-finanziaria' },
   { label: 'Pianificazione e Controllo', color: '#FDB828', to: '/pianificazione-controllo' },
+  { label: 'Simulazioni di EGI', color: '#E32B4A', to: '/simulazioni-egi' },
+  { label: 'Simulazioni di Macro', color: '#F48233', to: '/simulazioni-macro' },
 ];
 
 export default function StudioHubHome() {

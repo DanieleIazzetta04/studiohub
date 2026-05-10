@@ -40,7 +40,7 @@ export default function App() {
 
         {/* Simulazioni EGI */}
         <Route path="/simulazioni-egi" element={<SimulazioniEGIHub />} />
-        <Route path="/simulazioni-egi/:id" element={<SimulazioneEGIDetail />} />
+        <Route path="/simulazioni-egi/:category/:id" element={<SimulazioneEGIDetail />} />
 
         {/* Simulazioni Macro - placeholder */}
         <Route

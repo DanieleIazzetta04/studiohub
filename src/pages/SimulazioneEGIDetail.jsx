@@ -2,17 +2,32 @@ import { useParams, Navigate } from 'react-router-dom';
 import TopBar from '../components/TopBar';
 import Quiz from '../components/Quiz';
 import { SIMULAZIONI_EGI } from '../data/simulazioniEGI';
+import { SIMULAZIONI_EGI_MULTIPLA } from '../data/simulazioniEGIMultipla';
+import { SIMULAZIONI_EGI_APERTE } from '../data/simulazioniEGIAperte';
+import { SIMULAZIONI_EGI_ESERCIZI } from '../data/simulazioniEGIEsercizi';
 import '../styles/studiohub.css';
 import '../styles/quiz.css';
 
 const COLOR = '#E32B4A';
 
-export default function SimulazioneEGIDetail() {
-  const { id } = useParams();
-  const numId = parseInt(id, 10);
-  const sim = SIMULAZIONI_EGI.find(s => s.id === numId);
+const SOURCES = {
+  c: { data: SIMULAZIONI_EGI, label: 'Simulazione completa' },
+  m: { data: SIMULAZIONI_EGI_MULTIPLA, label: 'Solo domande multiple' },
+  a: { data: SIMULAZIONI_EGI_APERTE, label: 'Solo domande aperte' },
+  e: { data: SIMULAZIONI_EGI_ESERCIZI, label: 'Solo esercizi' },
+};
 
+export default function SimulazioneEGIDetail() {
+  const { category, id } = useParams();
+  const cat = category && SOURCES[category];
+  const numId = parseInt(id, 10);
+
+  if (!cat) return <Navigate to="/simulazioni-egi" replace />;
+
+  const sim = cat.data.find(s => s.id === numId);
   if (!sim) return <Navigate to="/simulazioni-egi" replace />;
+
+  const total = cat.data.length;
 
   return (
     <div className="studiohub-app" style={{ '--card-color': COLOR }}>
@@ -27,7 +42,7 @@ export default function SimulazioneEGIDetail() {
           <div className="big-card-inner">
             <div style={{ marginBottom: 20 }}>
               <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: COLOR, marginBottom: 6 }}>
-                Simulazione EGI · {sim.id}/5
+                {cat.label} · {sim.id}/{total}
               </div>
               <h1 style={{ fontSize: '1.6rem', margin: '0 0 4px 0', fontWeight: 700, color: '#111827', fontFamily: 'Inter, sans-serif' }}>
                 {sim.title}

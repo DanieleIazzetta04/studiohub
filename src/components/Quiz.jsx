@@ -115,9 +115,12 @@ function OpenQuestion({ question, soluzione, points, weeks, color, index, type =
 }
 
 export default function Quiz({ simulazione, color = '#E32B4A' }) {
-  const totalMcPoints = simulazione.multipleChoice.length * 1.5;
-  const totalApplicataPoints = simulazione.teoriaApplicata.reduce((s, q) => s + (q.points || 3), 0);
-  const totalEserciziPoints = simulazione.esercizi.reduce((s, q) => s + (q.points || 4), 0);
+  const mc = simulazione.multipleChoice || [];
+  const aperte = simulazione.teoriaApplicata || [];
+  const esercizi = simulazione.esercizi || [];
+  const totalMcPoints = mc.length * 1.5;
+  const totalApplicataPoints = aperte.reduce((s, q) => s + (q.points || 3), 0);
+  const totalEserciziPoints = esercizi.reduce((s, q) => s + (q.points || 4), 0);
   const totalPoints = totalMcPoints + totalApplicataPoints + totalEserciziPoints;
 
   return (
@@ -125,49 +128,55 @@ export default function Quiz({ simulazione, color = '#E32B4A' }) {
       <div className="quiz-meta-bar" style={{ borderColor: color }}>
         <div className="quiz-meta-item"><strong>{simulazione.duration} min</strong><span>durata</span></div>
         <div className="quiz-meta-item"><strong>{totalPoints.toFixed(0)} pt</strong><span>punteggio massimo</span></div>
-        <div className="quiz-meta-item"><strong>{simulazione.multipleChoice.length}</strong><span>domande multiple</span></div>
-        <div className="quiz-meta-item"><strong>{simulazione.teoriaApplicata.length}</strong><span>teoria applicata</span></div>
-        <div className="quiz-meta-item"><strong>{simulazione.esercizi.length}</strong><span>esercizi</span></div>
+        {mc.length > 0 && <div className="quiz-meta-item"><strong>{mc.length}</strong><span>domande multiple</span></div>}
+        {aperte.length > 0 && <div className="quiz-meta-item"><strong>{aperte.length}</strong><span>domande aperte</span></div>}
+        {esercizi.length > 0 && <div className="quiz-meta-item"><strong>{esercizi.length}</strong><span>esercizi</span></div>}
       </div>
 
       {/* Sezione 1: Multiple choice */}
-      <section className="quiz-section">
-        <h2 className="quiz-section-title" style={{ color }}>
-          A · Domande a risposta multipla <span className="quiz-section-pts">({simulazione.multipleChoice.length} × 1,5 pt = {totalMcPoints.toFixed(1)} pt)</span>
-        </h2>
-        <p className="quiz-section-hint">
-          Seleziona tutte le risposte che ritieni corrette (possono essere più di una). Premi "Verifica" per vedere la soluzione.
-        </p>
-        {simulazione.multipleChoice.map((q, i) => (
-          <MultipleChoiceQuestion key={i} {...q} index={i} color={color} />
-        ))}
-      </section>
+      {mc.length > 0 && (
+        <section className="quiz-section">
+          <h2 className="quiz-section-title" style={{ color }}>
+            A · Domande a risposta multipla <span className="quiz-section-pts">({mc.length} × 1,5 pt = {totalMcPoints.toFixed(1)} pt)</span>
+          </h2>
+          <p className="quiz-section-hint">
+            Seleziona tutte le risposte che ritieni corrette (possono essere più di una). Premi "Verifica" per vedere la soluzione.
+          </p>
+          {mc.map((q, i) => (
+            <MultipleChoiceQuestion key={i} {...q} index={i} color={color} />
+          ))}
+        </section>
+      )}
 
       {/* Sezione 2: Teoria applicata */}
-      <section className="quiz-section">
-        <h2 className="quiz-section-title" style={{ color }}>
-          B · Domande di teoria applicata <span className="quiz-section-pts">({totalApplicataPoints} pt totali)</span>
-        </h2>
-        <p className="quiz-section-hint">
-          Risposta aperta (max ~10 righe). Scrivi nella casella di testo, poi confronta con la soluzione.
-        </p>
-        {simulazione.teoriaApplicata.map((q, i) => (
-          <OpenQuestion key={i} {...q} points={q.points || 3} index={i} color={color} type="applicata" />
-        ))}
-      </section>
+      {aperte.length > 0 && (
+        <section className="quiz-section">
+          <h2 className="quiz-section-title" style={{ color }}>
+            {mc.length > 0 ? 'B · ' : ''}Domande di teoria applicata <span className="quiz-section-pts">({totalApplicataPoints} pt totali)</span>
+          </h2>
+          <p className="quiz-section-hint">
+            Risposta aperta (max ~10 righe). Scrivi nella casella di testo, poi confronta con la soluzione.
+          </p>
+          {aperte.map((q, i) => (
+            <OpenQuestion key={i} {...q} points={q.points || 3} index={i} color={color} type="applicata" />
+          ))}
+        </section>
+      )}
 
       {/* Sezione 3: Esercizi */}
-      <section className="quiz-section">
-        <h2 className="quiz-section-title" style={{ color }}>
-          C · Esercizi / Teoria applicata <span className="quiz-section-pts">({totalEserciziPoints} pt totali)</span>
-        </h2>
-        <p className="quiz-section-hint">
-          Esercizi calcolatori e di applicazione strategica. Mostra la soluzione dopo aver tentato.
-        </p>
-        {simulazione.esercizi.map((q, i) => (
-          <OpenQuestion key={i} {...q} points={q.points || 4} index={i} color={color} type="esercizio" />
-        ))}
-      </section>
+      {esercizi.length > 0 && (
+        <section className="quiz-section">
+          <h2 className="quiz-section-title" style={{ color }}>
+            {(mc.length > 0 ? 'C · ' : '')}{(aperte.length > 0 && mc.length === 0 ? 'B · ' : '')}Esercizi / Teoria applicata <span className="quiz-section-pts">({totalEserciziPoints} pt totali)</span>
+          </h2>
+          <p className="quiz-section-hint">
+            Esercizi calcolatori e di applicazione strategica. Mostra la soluzione dopo aver tentato.
+          </p>
+          {esercizi.map((q, i) => (
+            <OpenQuestion key={i} {...q} points={q.points || 4} index={i} color={color} type="esercizio" />
+          ))}
+        </section>
+      )}
     </div>
   );
 }

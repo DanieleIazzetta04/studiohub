@@ -9,6 +9,8 @@ import WeekDetailPage from './pages/WeekDetailPage';
 import PlaceholderPage from './pages/PlaceholderPage';
 import SimulazioniEGIHub from './pages/SimulazioniEGIHub';
 import SimulazioneEGIDetail from './pages/SimulazioneEGIDetail';
+import SimulazioniMacroHub from './pages/SimulazioniMacroHub';
+import SimulazioneMacroDetail from './pages/SimulazioneMacroDetail';
 
 import './index.css';
 import './styles/studiohub.css';
@@ -42,11 +44,9 @@ export default function App() {
         <Route path="/simulazioni-egi" element={<SimulazioniEGIHub />} />
         <Route path="/simulazioni-egi/:category/:id" element={<SimulazioneEGIDetail />} />
 
-        {/* Simulazioni Macro - placeholder */}
-        <Route
-          path="/simulazioni-macro"
-          element={<PlaceholderPage title="Simulazioni di Macro" color="#F48233" />}
-        />
+        {/* Simulazioni Macro */}
+        <Route path="/simulazioni-macro" element={<SimulazioniMacroHub />} />
+        <Route path="/simulazioni-macro/:id" element={<SimulazioneMacroDetail />} />
 
         {/* Catch-all back to home */}
         <Route path="*" element={<StudioHubHome />} />

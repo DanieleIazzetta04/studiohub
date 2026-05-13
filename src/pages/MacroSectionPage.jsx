@@ -47,6 +47,7 @@ const SECTION_DATA = {
     chapters: [
       { num: 16, label: 'CAPITOLO 16', subtitle: 'Modello Dinamico' },
       { num: 17, label: 'CAPITOLO 17', subtitle: 'Politiche di Stabilizzazione' },
+      { num: 18, label: 'CAPITOLO 18', subtitle: 'Sostenibilità del Debito Pubblico' },
     ],
   },
 };

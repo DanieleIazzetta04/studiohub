@@ -19,12 +19,13 @@ import Cap14 from './macro/Cap14_MundellFleming';
 import Cap15 from './macro/Cap15_OffertaAggregata';
 import Cap16 from './macro/Cap16_ModelloDinamico';
 import Cap17 from './macro/Cap17_PoliticheStabilizzazione';
+import Cap18 from './macro/Cap18_DebitoPubblico';
 
 const COLOR = '#45ABD9';
 const CAP_COMPONENTS = {
   1: Cap1, 2: Cap2, 3: Cap3, 4: Cap4, 5: Cap5, 6: Cap6, 7: Cap7,
   8: Cap8, 9: Cap9, 10: Cap10, 11: Cap11, 12: Cap12, 13: Cap13,
-  14: Cap14, 15: Cap15, 16: Cap16, 17: Cap17,
+  14: Cap14, 15: Cap15, 16: Cap16, 17: Cap17, 18: Cap18,
 };
 
 export default function MacroChapterDetailPage() {

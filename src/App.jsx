@@ -11,6 +11,8 @@ import SimulazioniEGIHub from './pages/SimulazioniEGIHub';
 import SimulazioneEGIDetail from './pages/SimulazioneEGIDetail';
 import SimulazioniMacroHub from './pages/SimulazioniMacroHub';
 import SimulazioneMacroDetail from './pages/SimulazioneMacroDetail';
+import PianificazioneHub from './pages/PianificazioneHub';
+import PianificazioneLectureDetail from './pages/PianificazioneLectureDetail';
 
 import './index.css';
 import './styles/studiohub.css';
@@ -35,10 +37,8 @@ export default function App() {
           path="/matematica-finanziaria"
           element={<PlaceholderPage title="Matematica Finanziaria" color="#7DB85B" />}
         />
-        <Route
-          path="/pianificazione-controllo"
-          element={<PlaceholderPage title="Pianificazione e Controllo" color="#FDB828" />}
-        />
+        <Route path="/pianificazione-controllo" element={<PianificazioneHub />} />
+        <Route path="/pianificazione-controllo/:id" element={<PianificazioneLectureDetail />} />
 
         {/* Simulazioni EGI */}
         <Route path="/simulazioni-egi" element={<SimulazioniEGIHub />} />

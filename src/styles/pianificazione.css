@@ -1,0 +1,236 @@
+/* ═══════════════════════════════════════════════════════════════
+   Pianificazione e Controllo — Layout dispensa lezioni
+   Adattato dalla web app standalone "Pianificazione-StudyHub"
+   ═══════════════════════════════════════════════════════════════ */
+
+.pec-layout {
+  display: flex;
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 24px;
+  gap: 48px;
+  align-items: flex-start;
+}
+
+/* ─── TOC (indice laterale) ──────────────────────────────────── */
+.pec-toc {
+  width: 210px;
+  min-width: 210px;
+  position: sticky;
+  top: 28px;
+  padding-top: 32px;
+}
+
+.pec-toc-inner {
+  padding: 14px 12px;
+  background: white;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+}
+
+.pec-toc-label {
+  font-size: 10px;
+  font-weight: 800;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+  padding: 0 4px;
+}
+
+.pec-toc-item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 5px 8px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 11.5px;
+  color: #64748b;
+  border-radius: 5px;
+  line-height: 1.45;
+  transition: all 0.13s;
+  border-left: 2px solid transparent;
+  margin-bottom: 1px;
+  font-family: 'Inter', sans-serif;
+}
+
+.pec-toc-item:hover {
+  background: #f1f5f9;
+  color: #334155;
+}
+
+.pec-toc-item-active {
+  color: #b97d0a !important;
+  background: #fef9e7 !important;
+  border-left-color: #FDB828 !important;
+  font-weight: 600;
+}
+
+/* ─── CONTENUTO LEZIONE ──────────────────────────────────────── */
+.pec-content {
+  flex: 1;
+  min-width: 0;
+  padding: 32px 0 100px;
+}
+
+.pec-header {
+  margin-bottom: 40px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.pec-number {
+  font-size: 11px;
+  font-weight: 700;
+  color: #b97d0a;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  margin-bottom: 8px;
+  font-family: 'Inter', sans-serif;
+}
+
+.pec-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 8px;
+  line-height: 1.2;
+  font-family: 'Inter', sans-serif;
+}
+
+.pec-subtitle {
+  font-size: 15px;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.55;
+  font-family: 'Inter', sans-serif;
+}
+
+/* ─── SEZIONI ────────────────────────────────────────────────── */
+.pec-section {
+  margin-bottom: 56px;
+  scroll-margin-top: 28px;
+}
+
+.pec-section-title {
+  font-size: 19px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 24px;
+  line-height: 1.35;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #f1f5f9;
+  font-family: 'Inter', sans-serif;
+}
+
+/* ─── BODY (HTML del contenuto) ──────────────────────────────── */
+.pec-section-body {
+  font-size: 16px;
+  line-height: 1.85;
+  color: #374151;
+  font-family: 'Inter', sans-serif;
+}
+
+.pec-section-body p {
+  margin: 0 0 20px;
+}
+
+.pec-section-body p:last-child {
+  margin-bottom: 0;
+}
+
+.pec-section-body strong {
+  color: #111827;
+  font-weight: 600;
+}
+
+.pec-section-body em {
+  color: #4b5563;
+  font-style: italic;
+}
+
+.pec-section-body h3, .pec-section-body h4 {
+  font-weight: 700;
+  color: #111827;
+  margin-top: 28px;
+  margin-bottom: 12px;
+  font-family: 'Inter', sans-serif;
+}
+
+.pec-section-body h3 { font-size: 17px; }
+.pec-section-body h4 { font-size: 15px; }
+
+/* Tabelle inline */
+.pec-section-body table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  margin: 24px 0;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+}
+
+.pec-section-body thead {
+  background: #fef9e7;
+}
+
+.pec-section-body th {
+  padding: 11px 14px;
+  text-align: left;
+  font-weight: 700;
+  font-size: 11.5px;
+  color: #b97d0a;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.pec-section-body td {
+  padding: 10px 14px;
+  color: #374151;
+  border-bottom: 1px solid #f1f5f9;
+  vertical-align: top;
+  line-height: 1.55;
+}
+
+.pec-section-body tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Liste inline */
+.pec-section-body ul,
+.pec-section-body ol {
+  margin: 0 0 20px;
+  padding-left: 22px;
+}
+
+.pec-section-body li {
+  margin-bottom: 6px;
+  line-height: 1.75;
+}
+
+/* Grafico/diagramma */
+.pec-section-chart {
+  margin: 32px 0;
+}
+
+/* Responsive */
+@media (max-width: 980px) {
+  .pec-layout {
+    flex-direction: column;
+    padding: 0 16px;
+    gap: 16px;
+  }
+  .pec-toc {
+    width: 100%;
+    min-width: 0;
+    position: static;
+    padding-top: 0;
+  }
+  .pec-content {
+    padding: 16px 0 80px;
+  }
+}

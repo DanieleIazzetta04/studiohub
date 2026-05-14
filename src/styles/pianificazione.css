@@ -1,236 +1,455 @@
 /* ═══════════════════════════════════════════════════════════════
-   Pianificazione e Controllo — Layout dispensa lezioni
-   Adattato dalla web app standalone "Pianificazione-StudyHub"
+   Pianificazione e Controllo — Stile coerente con Macro/EGI
+   Le sezioni usano .content-section.glass-panel (vedi index.css)
+   per il wrapping principale; qui aggiungiamo gli stili specifici
+   per il contenuto HTML interno (.pec-prose) e per gli elementi
+   non gestiti dalla regola globale.
    ═══════════════════════════════════════════════════════════════ */
 
-.pec-layout {
-  display: flex;
-  max-width: 1140px;
-  margin: 0 auto;
-  padding: 0 24px;
-  gap: 48px;
-  align-items: flex-start;
+/* Titolo principale della lezione (tinta arancione PEC) */
+.pec-page-title {
+  background: linear-gradient(135deg, #FDB828, #b97d0a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.5rem;
 }
 
-/* ─── TOC (indice laterale) ──────────────────────────────────── */
-.pec-toc {
-  width: 210px;
-  min-width: 210px;
-  position: sticky;
-  top: 28px;
-  padding-top: 32px;
+/* ─── Mini indice in alto ─────────────────────────────────────── */
+.pec-mini-toc {
+  background: rgba(253, 184, 40, 0.06);
+  border: 1px solid rgba(253, 184, 40, 0.20);
+  border-left: 4px solid #FDB828;
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 2.5rem;
 }
 
-.pec-toc-inner {
-  padding: 14px 12px;
-  background: white;
-  border-radius: 10px;
-  border: 1px solid #e2e8f0;
-}
-
-.pec-toc-label {
-  font-size: 10px;
+.pec-mini-toc-label {
+  font-size: 0.72rem;
   font-weight: 800;
-  color: #94a3b8;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 8px;
-  padding: 0 4px;
-}
-
-.pec-toc-item {
-  display: block;
-  width: 100%;
-  text-align: left;
-  padding: 5px 8px;
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  font-size: 11.5px;
-  color: #64748b;
-  border-radius: 5px;
-  line-height: 1.45;
-  transition: all 0.13s;
-  border-left: 2px solid transparent;
-  margin-bottom: 1px;
-  font-family: 'Inter', sans-serif;
-}
-
-.pec-toc-item:hover {
-  background: #f1f5f9;
-  color: #334155;
-}
-
-.pec-toc-item-active {
-  color: #b97d0a !important;
-  background: #fef9e7 !important;
-  border-left-color: #FDB828 !important;
-  font-weight: 600;
-}
-
-/* ─── CONTENUTO LEZIONE ──────────────────────────────────────── */
-.pec-content {
-  flex: 1;
-  min-width: 0;
-  padding: 32px 0 100px;
-}
-
-.pec-header {
-  margin-bottom: 40px;
-  padding-bottom: 24px;
-  border-bottom: 1px solid #e2e8f0;
-}
-
-.pec-number {
-  font-size: 11px;
-  font-weight: 700;
   color: #b97d0a;
   text-transform: uppercase;
-  letter-spacing: 1.2px;
-  margin-bottom: 8px;
-  font-family: 'Inter', sans-serif;
+  letter-spacing: 0.12em;
+  margin-bottom: 0.75rem;
 }
 
-.pec-title {
-  font-size: 28px;
-  font-weight: 700;
-  color: #0f172a;
-  margin: 0 0 8px;
-  line-height: 1.2;
-  font-family: 'Inter', sans-serif;
-}
-
-.pec-subtitle {
-  font-size: 15px;
-  color: #64748b;
+.pec-mini-toc-list {
+  list-style: none;
+  padding: 0;
   margin: 0;
-  line-height: 1.55;
-  font-family: 'Inter', sans-serif;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 0.4rem 1.5rem;
 }
 
-/* ─── SEZIONI ────────────────────────────────────────────────── */
-.pec-section {
-  margin-bottom: 56px;
-  scroll-margin-top: 28px;
+.pec-mini-toc-link {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 0.3rem 0;
+  line-height: 1.4;
+  transition: color 0.15s;
 }
 
-.pec-section-title {
-  font-size: 19px;
+.pec-mini-toc-link:hover {
+  color: var(--accent-indigo);
+}
+
+.pec-mini-toc-num {
+  font-size: 0.72rem;
   font-weight: 700;
-  color: #0f172a;
-  margin: 0 0 24px;
-  line-height: 1.35;
-  padding-bottom: 12px;
-  border-bottom: 2px solid #f1f5f9;
-  font-family: 'Inter', sans-serif;
+  color: #FDB828;
+  background: rgba(253, 184, 40, 0.10);
+  border-radius: 5px;
+  padding: 2px 6px;
+  flex-shrink: 0;
+  letter-spacing: 0.05em;
 }
 
-/* ─── BODY (HTML del contenuto) ──────────────────────────────── */
-.pec-section-body {
-  font-size: 16px;
-  line-height: 1.85;
-  color: #374151;
-  font-family: 'Inter', sans-serif;
+/* ─── Card sezione (glass-panel override sottile) ─────────────── */
+.pec-section-card {
+  background: rgba(255, 255, 255, 0.85) !important;
 }
 
-.pec-section-body p {
-  margin: 0 0 20px;
+/* ─── Contenuto HTML (.pec-prose) ─────────────────────────────── */
+.pec-prose {
+  color: var(--text-secondary);
+  font-size: 1.02rem;
+  line-height: 1.8;
 }
 
-.pec-section-body p:last-child {
+.pec-prose p {
+  color: var(--text-secondary);
+  margin-bottom: 1.1rem;
+  font-size: 1.02rem;
+  line-height: 1.8;
+}
+
+.pec-prose p:last-child {
   margin-bottom: 0;
 }
 
-.pec-section-body strong {
-  color: #111827;
+.pec-prose strong {
+  color: var(--text-primary);
   font-weight: 600;
 }
 
-.pec-section-body em {
-  color: #4b5563;
+.pec-prose em {
+  color: var(--accent-indigo);
   font-style: italic;
 }
 
-.pec-section-body h3, .pec-section-body h4 {
-  font-weight: 700;
-  color: #111827;
-  margin-top: 28px;
-  margin-bottom: 12px;
-  font-family: 'Inter', sans-serif;
+.pec-prose h3 {
+  font-size: 1.2rem;
+  color: var(--text-primary);
+  margin-top: 1.8rem;
+  margin-bottom: 0.7rem;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.4rem;
 }
 
-.pec-section-body h3 { font-size: 17px; }
-.pec-section-body h4 { font-size: 15px; }
+.pec-prose h4 {
+  font-size: 1.05rem;
+  color: var(--text-primary);
+  margin-top: 1.3rem;
+  margin-bottom: 0.5rem;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+}
 
-/* Tabelle inline */
-.pec-section-body table {
+/* Liste */
+.pec-prose ul,
+.pec-prose ol {
+  margin: 0 0 1.2rem;
+  padding-left: 1.5rem;
+  color: var(--text-secondary);
+}
+
+.pec-prose ul { list-style: disc; }
+.pec-prose ol { list-style: decimal; }
+
+.pec-prose li {
+  margin-bottom: 0.4rem;
+  line-height: 1.75;
+}
+
+/* Tabelle inline — stile coerente con .table di Cap Macro */
+.pec-prose table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 14px;
-  margin: 24px 0;
+  font-size: 0.92rem;
+  margin: 1.5rem 0;
   border-radius: 10px;
   overflow: hidden;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--border-color);
+  background: white;
 }
 
-.pec-section-body thead {
-  background: #fef9e7;
+.pec-prose thead {
+  background: rgba(67, 56, 202, 0.08);
 }
 
-.pec-section-body th {
-  padding: 11px 14px;
+.pec-prose th {
+  padding: 0.7rem 0.9rem;
   text-align: left;
   font-weight: 700;
-  font-size: 11.5px;
-  color: #b97d0a;
+  font-size: 0.78rem;
+  color: var(--text-primary);
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  border-bottom: 1px solid #e2e8f0;
+  letter-spacing: 0.05em;
+  border-bottom: 2px solid rgba(67, 56, 202, 0.2);
 }
 
-.pec-section-body td {
-  padding: 10px 14px;
-  color: #374151;
-  border-bottom: 1px solid #f1f5f9;
+.pec-prose td {
+  padding: 0.55rem 0.9rem;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border-color);
   vertical-align: top;
   line-height: 1.55;
 }
 
-.pec-section-body tbody tr:last-child td {
+.pec-prose tbody tr:last-child td {
   border-bottom: none;
 }
 
-/* Liste inline */
-.pec-section-body ul,
-.pec-section-body ol {
-  margin: 0 0 20px;
-  padding-left: 22px;
+/* Blockquote */
+.pec-prose blockquote {
+  border-left: 4px solid var(--accent-indigo);
+  padding: 0.6rem 1.2rem;
+  margin: 1.2rem 0;
+  color: var(--text-secondary);
+  font-style: italic;
+  background: rgba(67, 56, 202, 0.04);
+  border-radius: 0 8px 8px 0;
 }
 
-.pec-section-body li {
-  margin-bottom: 6px;
-  line-height: 1.75;
+/* Codice inline */
+.pec-prose code {
+  background: rgba(2, 132, 199, 0.08);
+  color: var(--accent-cyan);
+  padding: 0.1em 0.4em;
+  border-radius: 4px;
+  font-size: 0.92em;
+  font-family: 'JetBrains Mono', monospace;
 }
 
-/* Grafico/diagramma */
-.pec-section-chart {
-  margin: 32px 0;
+/* ─── Wrapper per chart e diagrammi — stile graphWrap Macro ──── */
+.pec-chart-wrap {
+  background: rgba(2, 132, 199, 0.04);
+  border: 1px solid rgba(2, 132, 199, 0.12);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 1.8rem 0 0.5rem;
+}
+
+.pec-chart-wrap > * {
+  margin: 0;
 }
 
 /* Responsive */
 @media (max-width: 980px) {
-  .pec-layout {
-    flex-direction: column;
-    padding: 0 16px;
-    gap: 16px;
+  .pec-mini-toc-list {
+    grid-template-columns: 1fr;
   }
-  .pec-toc {
-    width: 100%;
-    min-width: 0;
-    position: static;
-    padding-top: 0;
+  .pec-prose table {
+    font-size: 0.85rem;
   }
-  .pec-content {
-    padding: 16px 0 80px;
+  .pec-prose th, .pec-prose td {
+    padding: 0.45rem 0.6rem;
   }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Chart & Slider styles (porting da app standalone, tema PEC)
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ─── CHART CARD ──────────────────────────────────────────────── */
+.chart-card {
+  background: #fff;
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.chart-card-header {
+  padding: 1rem 1.4rem 0.9rem;
+  border-bottom: 1px solid var(--border-color);
+  background: linear-gradient(180deg, rgba(253, 184, 40, 0.04), transparent);
+}
+
+.chart-card-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.2rem;
+  font-family: 'Outfit', sans-serif;
+}
+
+.chart-card-sub {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+/* ─── SLIDERS ─────────────────────────────────────────────────── */
+.chart-controls {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 0.9rem;
+  padding: 1rem 1.4rem;
+  background: rgba(248, 250, 252, 0.6);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.slider-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.slider-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.slider-label {
+  font-size: 0.74rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.slider-value {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #b97d0a;
+  white-space: nowrap;
+  margin-left: 0.5rem;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.slider-track-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.slider-input {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(to right, #FDB828 var(--pct, 50%), #e2e8f0 var(--pct, 50%));
+  outline: none;
+  cursor: pointer;
+}
+
+.slider-input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #FDB828;
+  box-shadow: 0 2px 5px rgba(253, 184, 40, 0.45);
+  cursor: pointer;
+  transition: transform 0.1s;
+  border: 2px solid #fff;
+}
+
+.slider-input::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+
+.slider-input::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #FDB828;
+  border: 2px solid #fff;
+  cursor: pointer;
+}
+
+.slider-bounds {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.65rem;
+  color: #94a3b8;
+}
+
+/* ─── CHART AREA ──────────────────────────────────────────────── */
+.chart-area {
+  padding: 0.6rem 0.3rem 0;
+}
+
+.chart-dual {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  padding: 0.6rem 0.3rem 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.chart-half {
+  padding: 0.8rem 0.8rem 0;
+}
+
+.chart-half + .chart-half {
+  border-left: 1px solid var(--border-color);
+}
+
+.chart-half-title {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.4rem;
+  font-family: 'Outfit', sans-serif;
+}
+
+.chart-formula {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  background: rgba(67, 56, 202, 0.05);
+  border-radius: 6px;
+  padding: 0.4rem 0.7rem;
+  margin: 0.6rem 0 0.8rem;
+  text-align: center;
+}
+
+/* ─── METRICS ─────────────────────────────────────────────────── */
+.chart-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  border-top: 1px solid var(--border-color);
+  background: rgba(248, 250, 252, 0.4);
+}
+
+.metric-card {
+  flex: 1;
+  min-width: 160px;
+  padding: 0.9rem 1.1rem;
+  border-right: 1px solid var(--border-color);
+  text-align: center;
+}
+
+.metric-card:last-child {
+  border-right: none;
+}
+
+.metric-card-purple {
+  background: rgba(168, 85, 247, 0.06);
+}
+
+.metric-label {
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.3rem;
+  line-height: 1.4;
+}
+
+.metric-value {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  font-family: 'Outfit', sans-serif;
+}
+
+/* ─── TOOLTIP ─────────────────────────────────────────────────── */
+.chart-tooltip {
+  background: white;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 0.65rem 0.9rem;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.10);
+  font-size: 0.82rem;
+  min-width: 180px;
+}
+
+.chart-tooltip-title {
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.4rem;
+  font-size: 0.78rem;
+}
+
+.chart-tooltip-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.15rem;
+}
+
+.chart-tooltip-profit {
+  font-weight: 700;
 }

@@ -11,6 +11,8 @@ import SimulazioniEGIHub from './pages/SimulazioniEGIHub';
 import SimulazioneEGIDetail from './pages/SimulazioneEGIDetail';
 import SimulazioniMacroHub from './pages/SimulazioniMacroHub';
 import SimulazioneMacroDetail from './pages/SimulazioneMacroDetail';
+import SimulazioniPeCHub from './pages/SimulazioniPeCHub';
+import SimulazionePeCDetail from './pages/SimulazionePeCDetail';
 import PianificazioneHub from './pages/PianificazioneHub';
 import PianificazioneLectureDetail from './pages/PianificazioneLectureDetail';
 
@@ -47,6 +49,10 @@ export default function App() {
         {/* Simulazioni Macro */}
         <Route path="/simulazioni-macro" element={<SimulazioniMacroHub />} />
         <Route path="/simulazioni-macro/:id" element={<SimulazioneMacroDetail />} />
+
+        {/* Simulazioni PeC */}
+        <Route path="/simulazioni-pec" element={<SimulazioniPeCHub />} />
+        <Route path="/simulazioni-pec/:id" element={<SimulazionePeCDetail />} />
 
         {/* Catch-all back to home */}
         <Route path="*" element={<StudioHubHome />} />

@@ -10,6 +10,7 @@ const SUBJECTS = [
   { label: 'Pianificazione e Controllo', color: '#FDB828', to: '/pianificazione-controllo' },
   { label: 'Simulazioni di EGI', color: '#E32B4A', to: '/simulazioni-egi' },
   { label: 'Simulazioni di Macro', color: '#F48233', to: '/simulazioni-macro' },
+  { label: 'Simulazioni di PeC', color: '#FDB828', to: '/simulazioni-pec' },
 ];
 
 export default function StudioHubHome() {

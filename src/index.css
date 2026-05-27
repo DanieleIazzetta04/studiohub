@@ -262,3 +262,39 @@ ul { list-style: none; }
 .markdown-body em { color: var(--accent-indigo); font-style: italic; }
 .markdown-body hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
 
+
+/* ═══════════════════════════════════════════════════════════════
+   Print / PDF export — fedeltà di colori, grafici e layout.
+   Non modifica i contenuti: serve solo a generare PDF puliti.
+   ═══════════════════════════════════════════════════════════════ */
+@media print {
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  .topbar { display: none !important; }
+  .studiohub-app { background: #fff !important; }
+  .studiohub-page {
+    margin-top: 0 !important;
+    padding: 0 !important;
+    max-width: 100% !important;
+  }
+  .big-card {
+    box-shadow: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    margin: 0 !important;
+    max-width: 100% !important;
+  }
+  .big-card-inner { padding: 0 !important; }
+  .content-section, .glass-panel {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    box-shadow: none !important;
+  }
+  svg, .recharts-wrapper, .chart-card {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  h1, h2, h3, h4 { break-after: avoid; page-break-after: avoid; }
+}

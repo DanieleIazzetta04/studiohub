@@ -287,14 +287,47 @@ ul { list-style: none; }
     max-width: 100% !important;
   }
   .big-card-inner { padding: 0 !important; }
-  .content-section, .glass-panel {
-    break-inside: avoid;
-    page-break-inside: avoid;
-    box-shadow: none !important;
+
+  /* Titoli con gradiente: in stampa il background-clip:text rende un
+     blocco colorato pieno. Forziamo testo a colore solido. */
+  .gradient-text,
+  .page-title.gradient-text {
+    background: none !important;
+    -webkit-background-clip: border-box !important;
+    background-clip: border-box !important;
+    -webkit-text-fill-color: #4338ca !important;
+    color: #4338ca !important;
   }
-  svg, .recharts-wrapper, .chart-card {
-    break-inside: avoid;
-    page-break-inside: avoid;
+  .pec-page-title {
+    background: none !important;
+    -webkit-background-clip: border-box !important;
+    background-clip: border-box !important;
+    -webkit-text-fill-color: #b97d0a !important;
+    color: #b97d0a !important;
   }
-  h1, h2, h3, h4 { break-after: avoid; page-break-after: avoid; }
+
+  /* Le sezioni lunghe possono spezzarsi tra le pagine (evita grandi
+     spazi bianchi). Restano invece atomici solo i blocchi visuali. */
+  .content-section, .glass-panel { box-shadow: none !important; }
+
+  /* Blocchi grafico: titolo + grafico + slider restano insieme */
+  .graph-block,
+  .graph-row,
+  .graph-controls,
+  svg,
+  .recharts-wrapper,
+  .chart-card,
+  table,
+  .formula,
+  .keyBox,
+  .caseCard {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+  .graph-block {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: #fff !important;
+  }
+  h2, h3, h4 { break-after: avoid; page-break-after: avoid; }
 }

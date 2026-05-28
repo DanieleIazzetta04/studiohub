@@ -157,6 +157,35 @@ const lecture2 = {
 
         <p>Riepilogando il framework della lezione, l'analisi CVR ruota intorno a poche formule fondamentali ma straordinariamente informative. Il costo totale si decompone in fissi e variabili: CT = CF + CVu × Q. Il risultato economico è la differenza tra ricavi e costi: Utile = RT − CT = (PV − CVu) × Q − CF = MCu × Q − CF. Il punto di pareggio è Q* = CF / MCu. Il volume necessario per un profitto target è Q = (CF + Profitto target) / MCu. E il Margine di Sicurezza misura quanto siamo distanti da quel punto critico. Quattro variabili, un sistema coerente di decisioni.</p>
       `
+    },
+    {
+      id: "make-or-buy",
+      title: "Decisioni Make-or-Buy e il punto di indifferenza tra alternative",
+      content: `
+        <p>L'analisi CVR diventa uno strumento decisionale potentissimo quando l'impresa deve scegliere tra <strong>alternative produttive diverse</strong>: produrre internamente o acquistare da fornitori esterni (decisione di <em>make-or-buy</em>), oppure scegliere tra due localizzazioni produttive con strutture di costo differenti, o tra due tecnologie con diversi livelli di automazione. In ogni caso il principio è lo stesso: confrontare la <strong>struttura economica</strong> delle due alternative al variare dei volumi.</p>
+
+        <p>Ciascuna alternativa è caratterizzata da una coppia di parametri: i costi fissi (CF) e il costo variabile unitario (CVu). Tipicamente, l'alternativa che richiede investimenti maggiori — produzione interna con stabilimento, macchinari e personale tecnico — ha <strong>CF più alti ma CVu più basso</strong>; l'alternativa "leggera" — acquistare dal fornitore o produrre in un paese a basso costo del lavoro — ha <strong>CF più bassi ma CVu più alto</strong> (per via dei margini del fornitore o dei costi di trasporto). La domanda strategica è: per quale volume di vendita un'alternativa conviene rispetto all'altra?</p>
+
+        <p>Il <strong>punto di indifferenza</strong> è il volume Q* per cui le due alternative producono lo stesso costo totale (e quindi lo stesso risultato operativo, dato che i ricavi a parità di prezzo sono identici). Si trova eguagliando i costi totali delle due alternative:</p>
+
+        <p><strong>CF<sub>A</sub> + CVu<sub>A</sub> × Q = CF<sub>B</sub> + CVu<sub>B</sub> × Q</strong></p>
+
+        <p>Risolvendo rispetto a Q si ottiene la formula del punto di indifferenza:</p>
+
+        <p><strong>Q* = (CF<sub>A</sub> − CF<sub>B</sub>) / (CVu<sub>B</sub> − CVu<sub>A</sub>)</strong></p>
+
+        <p>L'interpretazione è netta. Per volumi <em>inferiori</em> a Q* conviene l'alternativa con i costi fissi più bassi: a bassi volumi i CF non si "spalmano" su molte unità e pesano di più. Per volumi <em>superiori</em> a Q* conviene invece l'alternativa con il costo variabile unitario più basso: con grandi volumi il vantaggio di un CVu ridotto si moltiplica e compensa abbondantemente i maggiori CF. A Q* le due alternative sono indifferenti dal punto di vista economico, e la scelta dipende da considerazioni qualitative (rischio, flessibilità, controllo qualità, strategia).</p>
+
+        <p><strong>Esempio numerico.</strong> Avondale Ltd. valuta dove produrre una scheda di memoria. <em>Irlanda</em>: CF = €480.000, CVu = €23,60. <em>Polonia</em>: CF = €360.000, CVu = €24,60. Il punto di indifferenza è Q* = (480.000 − 360.000) / (24,60 − 23,60) = 120.000 / 1 = <strong>120.000 unità</strong>. Sotto 120.000 unità conviene la Polonia (CF più bassi); sopra, conviene l'Irlanda (CVu inferiore). Se le vendite previste sono 60.000 unità, la Polonia è la scelta economicamente migliore.</p>
+
+        <p>Una variante importante è la decisione <strong>make-or-buy con sconti contrattuali a soglia</strong>: il fornitore può offrire uno sconto sul prezzo di acquisto al superamento di una certa quantità, applicato solamente alle unità eccedenti. In questo caso il costo variabile unitario dell'alternativa "buy" <em>non è costante</em> al variare dei volumi: occorre calcolare separatamente il costo delle unità entro soglia (al prezzo pieno) e di quelle oltre soglia (al prezzo scontato). Il risultato operativo si ottiene come:</p>
+
+        <p><strong>RO = Ricavi − CF − (Q<sub>entro</sub> × CVu<sub>pieno</sub>) − (Q<sub>oltre</sub> × CVu<sub>scontato</sub>)</strong></p>
+
+        <p><strong>Esempio.</strong> BioScan Technologies può acquistare un prodotto a €48/unità, con uno sconto del 10% applicato solamente alle unità oltre le 30.000 acquistate. Aggiungendo costi logistici di €5/unità, il CVu base è €53; oltre la soglia diventa 48 × 0,9 + 5 = €48,20. Su 45.000 unità: 30.000 × 53 + 15.000 × 48,20 = €2.313.000 di costi variabili totali. Con CF di €210.000 e ricavi di €3.375.000 (45.000 × €75), il RO è 3.375.000 − 2.313.000 − 210.000 = <strong>€852.000</strong>.</p>
+
+        <p>La decisione di make-or-buy non è mai puramente quantitativa: il punto di indifferenza fornisce l'argomento economico, ma vanno valutate anche le implicazioni strategiche (controllo del know-how, dipendenza da fornitori, qualità, tempi di consegna, flessibilità nei volumi). Spesso un'impresa che potrebbe convenientemente "buy" sceglie di produrre internamente per ragioni di indipendenza strategica, e viceversa.</p>
+      `
     }
   ]
 }

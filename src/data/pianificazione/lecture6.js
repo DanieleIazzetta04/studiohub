@@ -122,6 +122,97 @@ const lecture6 = {
       `
     },
     {
+      id: 'budget-cassa-metodologia',
+      title: 'Il budget di cassa: dilazioni, voci non-cash, soglia di liquidità',
+      content: `
+<p>Il <strong>budget di cassa</strong> proietta mese per mese, in modo analitico, tutti gli incassi e i pagamenti attesi nel periodo, con l'obiettivo di anticipare le tensioni di liquidità e dimensionare correttamente le linee di credito necessarie. È uno dei budget settoriali più delicati: un risultato economico positivo non garantisce l'equilibrio finanziario, perché ricavi e costi seguono il principio di competenza, mentre la cassa segue il principio di liquidità.</p>
+
+<p>La struttura del budget di cassa è semplice e ricorsiva. Per ogni mese si parte dal saldo iniziale (= saldo finale del mese precedente), si sommano le entrate del mese e si sottraggono le uscite, ottenendo il saldo finale che diventa il saldo iniziale del mese successivo:</p>
+
+<p><strong>Saldo finale<sub>t</sub> = Saldo iniziale<sub>t</sub> + Entrate<sub>t</sub> − Uscite<sub>t</sub></strong></p>
+
+<h3>Incassi con dilazione clienti</h3>
+<p>Le vendite di un mese non generano incassi tutti nello stesso mese: la politica commerciale prevede dilazioni (es. 50% nel mese della vendita, 50% nel mese successivo; oppure 25% nel mese, 35% a un mese, 40% a due mesi). Il calcolo degli incassi del mese T è quindi una somma ponderata delle vendite recenti:</p>
+
+<p><strong>Incassi<sub>T</sub> = α<sub>0</sub> × Vendite<sub>T</sub> + α<sub>1</sub> × Vendite<sub>T−1</sub> + α<sub>2</sub> × Vendite<sub>T−2</sub> + Crediti pregressi incassati</strong></p>
+
+<p>dove α<sub>0</sub>, α<sub>1</sub>, α<sub>2</sub> sono le quote percentuali della politica di credito (con somma pari a 1). Se l'incasso è soggetto a commissioni (es. 2% per pagamenti online tramite gateway), occorre moltiplicare la quota corrispondente per (1 − commissione%). I crediti pregressi (es. crediti v/clienti al 31/12 dell'esercizio precedente) vanno aggiunti al mese in cui sono effettivamente incassati.</p>
+
+<h3>Pagamenti con dilazione fornitori</h3>
+<p>Specularmente, gli acquisti di materie prime di un mese vengono pagati con la dilazione contrattuale che differisce gli esborsi nei mesi successivi: a un mese significa che pagamenti<sub>T</sub> = acquisti<sub>T−1</sub>; a 60 giorni significa pagamenti<sub>T</sub> = acquisti<sub>T−2</sub>. Eventuali debiti v/fornitori a inizio periodo (es. €44.200 al 31/5 pagabili a giugno) vanno aggiunti al mese di pagamento.</p>
+
+<h3>Manodopera con personale fisso ed eccedenze (straordinari)</h3>
+<p>Spesso l'azienda ha un organico fisso, retribuito a salario costante indipendentemente dal livello di produzione, con un monte ore disponibile mensile pari a (numero lavoratori × ore standard mensili). Se le ore richieste dalla produzione superano le ore disponibili, la differenza viene coperta da manodopera straordinaria a tariffa più elevata. Il costo MOD del mese si calcola come:</p>
+
+<ul>
+  <li>se ore_richieste ≤ ore_fisse → <strong>Costo MOD = ore_fisse × tariffa_fissa</strong> (il costo del personale fisso si sostiene comunque);</li>
+  <li>se ore_richieste &gt; ore_fisse → <strong>Costo MOD = ore_fisse × tariffa_fissa + (ore_richieste − ore_fisse) × tariffa_straordinaria</strong>.</li>
+</ul>
+
+<p><strong>Esempio.</strong> RF S.p.A. ha 58 persone a tempo pieno, 240 ore/mese, €10/ora fisso. Ore disponibili = 13.920/mese; costo fisso = €139.200/mese. Tariffa straordinaria €14/ora. A luglio le ore richieste dalla produzione sono 16.200: eccedenza = 2.280 ore × €14 = €31.920. Costo MOD luglio = 139.200 + 31.920 = <strong>€171.120</strong>.</p>
+
+<h3>Voci NON-cash da escludere</h3>
+<p>Non tutte le voci del conto economico generano flussi di cassa. Vanno tassativamente <strong>esclusi</strong> dal budget di cassa:</p>
+<ul>
+  <li><strong>Ammortamenti</strong>: sono allocazione del costo di un investimento già pagato negli esercizi precedenti; non comportano uscite di cassa nel periodo corrente.</li>
+  <li><strong>Accantonamenti</strong> (es. fondo svalutazione crediti al 3% delle vendite, TFR maturando): sono iscrizioni contabili che riducono l'utile ma non comportano esborso monetario.</li>
+  <li><strong>Plusvalenze e minusvalenze</strong>: la vendita di un cespite genera incasso pari al <em>prezzo di vendita</em>, non alla plusvalenza. La plusvalenza è la differenza contabile tra prezzo e valore residuo (netto del fondo ammortamento) e va a conto economico, ma non al cash budget come voce separata.</li>
+</ul>
+
+<h3>Soglia di liquidità minima e finanziamento esterno</h3>
+<p>Molte imprese stabiliscono per policy un saldo di cassa minimo di sicurezza (es. €10.000 a fine mese) per coprire imprevisti. Se il saldo previsto scende sotto la soglia, occorre attivare un finanziamento esterno (linea di credito, fido bancario, finanziamento a breve termine) sufficiente a riportare il saldo al livello minimo:</p>
+
+<p><strong>Finanziamento necessario = Soglia minima − Saldo pre-finanziamento</strong></p>
+
+<p><strong>Esempio.</strong> Gamma SpA, maggio: saldo iniziale €28.000, entrate €141.000, uscite €186.000 (incluso rimborso mutuo €50.000) → saldo pre-finanziamento = 28.000 + 141.000 − 186.000 = −€17.000. Soglia minima €10.000. Serve un finanziamento di 10.000 − (−17.000) = <strong>€27.000</strong> per portare il saldo al minimo richiesto.</p>
+
+<p>Il budget di cassa così costruito non è solo uno strumento previsionale: è il fondamento della tesoreria attiva, della negoziazione delle linee di credito con le banche e della gestione strategica del capitale circolante. Un'impresa in utile ma con cassa cronicamente negativa è destinata al default; un'impresa con utili modesti ma cassa solida può sopravvivere e crescere.</p>
+      `
+    },
+    {
+      id: 'budget-economico-civilistico',
+      title: 'Il budget economico in schema civilistico (art. 2425 c.c.)',
+      content: `
+<p>Quando il budget si traduce in un <strong>conto economico preventivo</strong>, lo schema più diffuso è quello civilistico previsto dall'<em>art. 2425 del Codice Civile</em>, che organizza ricavi e costi in macro-aree gerarchiche. Conoscerne la struttura è essenziale per leggere correttamente la sintesi economica del budget e per il confronto con il bilancio consuntivo.</p>
+
+<h3>A) Valore della produzione</h3>
+<ul>
+  <li><strong>A1 — Ricavi delle vendite e delle prestazioni</strong>: il fatturato del budget commerciale (quantità × prezzo di vendita).</li>
+  <li><strong>A2 — Variazione delle rimanenze di prodotti finiti e semilavorati</strong>: positiva se RF &gt; RI (le scorte sono cresciute, una parte del valore prodotto non è venduta ma resta in magazzino); negativa nel caso opposto. Formula: A2 = (RF − RI) × valore unitario PF.</li>
+  <li><strong>A5 — Altri ricavi e proventi</strong>: fitti attivi, plusvalenze ordinarie da dismissione cespiti, ricavi accessori.</li>
+</ul>
+
+<h3>B) Costi della produzione</h3>
+<ul>
+  <li><strong>B6 — Materie prime, sussidiarie, di consumo e merci</strong>: il totale degli <em>acquisti</em> del periodo (non il consumo).</li>
+  <li><strong>B7 — Servizi</strong>: provvigioni a venditori autonomi, marketing, telefonia, manutenzioni, energia, pulizie, compensi a CDA e sindaci, consulenze esterne.</li>
+  <li><strong>B8 — Godimento di beni di terzi</strong>: affitti, canoni di leasing, noleggi.</li>
+  <li><strong>B9 — Costi per il personale</strong>: salari, stipendi, oneri sociali, TFR, altri costi del personale <em>dipendente</em>. La parte fissa di venditori autonomi va invece in B7.</li>
+  <li><strong>B10 — Ammortamenti e svalutazioni</strong>: quote di ammortamento dei cespiti, svalutazioni di crediti e immobilizzazioni.</li>
+  <li><strong>B11 — Variazione delle rimanenze di materie prime</strong>: con segno opposto rispetto ad A2. Formula: B11 = RI − RF (se le scorte MP sono cresciute, B11 è negativo e riduce i costi della produzione, perché parte degli acquisti è andata in magazzino e non in consumo).</li>
+  <li><strong>B14 — Oneri diversi di gestione</strong>: imposte indirette, contributi associativi, minusvalenze ordinarie, sopravvenienze passive.</li>
+</ul>
+
+<h3>Differenza A − B e risultato d'esercizio</h3>
+<p>La differenza A − B è il <strong>risultato operativo</strong> (Reddito Operativo): misura la capacità reddituale della gestione caratteristica. A questa si aggiungono i proventi e oneri finanziari (C), si sottraggono le imposte sul reddito (IRES + IRAP, stimate tipicamente al 28-40%), e si ottiene l'utile (o la perdita) d'esercizio.</p>
+
+<h3>La logica della variazione rimanenze</h3>
+<p>I segni di A2 e B11 sembrano controintuitivi ma sono coerenti con la logica della <em>competenza economica</em>: il valore della produzione di periodo comprende anche ciò che è stato prodotto ma non venduto (incremento di rimanenze PF, segno positivo in A2); il costo della produzione di periodo comprende solo ciò che è stato <em>consumato</em>, non ciò che è stato <em>acquistato</em> (B6 sono gli acquisti, B11 corregge sottraendo l'incremento di rimanenze MP che non è ancora andato in consumo, da cui il segno RI − RF).</p>
+
+<p><strong>Esempio sintetico</strong> (Paper S.r.l.):</p>
+<ul>
+  <li>A1 ricavi 1.500.000, A2 = 0 (RI=RF), A5 altri ricavi 14.000 → <strong>A = 1.514.000</strong></li>
+  <li>B6 acquisti MP 528.250, B7 servizi 116.600, B9 personale 309.000, B10 ammortamenti 15.000, B11 = RI 101.750 − RF 105.000 = −3.250 → <strong>B = 965.600</strong></li>
+  <li><strong>A − B = 548.400</strong></li>
+  <li>C (interessi attivi 1.500 − passivi 16.800) = −15.300</li>
+  <li>Risultato ante imposte = 533.100 · Imposte 40% = 213.240</li>
+  <li><strong>Utile d'esercizio = €319.860</strong></li>
+</ul>
+
+<p>Il budget economico in schema civilistico è la sintesi reddituale del processo di budgeting e, insieme allo stato patrimoniale preventivo e al budget di cassa, costituisce il <em>bilancio d'esercizio a preventivo</em> di cui parla la teoria: il "bilancio prima del bilancio", che permette di simulare ex-ante l'effetto delle scelte operative sui margini, sul patrimonio e sulla liquidità dell'esercizio futuro.</p>
+      `
+    },
+    {
       id: 'approcci-definizione',
       title: 'Top-down e bottom-up: approcci a confronto',
       charts: [{ type: 'top-down-bottom-up' }],

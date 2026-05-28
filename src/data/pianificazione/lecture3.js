@@ -93,6 +93,45 @@ const lecture3 = {
       `
     },
     {
+      id: "coefficienti-dipartimentali",
+      title: "Il sistema a coefficienti dipartimentali (basi multiple per reparto)",
+      content: `
+        <p>Tra l'approccio a <strong>base unica aziendale</strong> — un solo coefficiente per tutta l'impresa, applicato in modo uniforme a tutti i reparti — e l'approccio ABC, esiste una soluzione intermedia molto usata nella pratica: il <strong>sistema a coefficienti dipartimentali</strong>. L'idea è semplice ma potente: si calcola <em>un coefficiente di allocazione distinto per ciascun reparto produttivo</em>, e in ciascun reparto si sceglie la base di allocazione più rappresentativa del comportamento dei costi indiretti di quel reparto.</p>
+
+        <p>La logica è la seguente. Un reparto altamente automatizzato (es. lavorazioni meccaniche con CNC e robot) genera costi indiretti — energia elettrica, ammortamento dei macchinari, manutenzione — che variano principalmente al variare delle <strong>ore macchina</strong>. Un reparto labour-intensive (es. assemblaggio manuale, finitura artigianale) genera invece costi indiretti — supervisione, illuminazione, materiali di consumo — che dipendono dalle <strong>ore di manodopera diretta</strong> o dal <strong>costo della manodopera</strong>. Usare un'unica base aziendale per entrambi i reparti distorcerebbe l'allocazione; usare basi diverse ma adatte alla specificità di ciascun reparto produce costi di commessa molto più accurati.</p>
+
+        <p>Il procedimento si articola in tre passi:</p>
+        <ul>
+          <li><strong>Passo 1.</strong> Per ciascun reparto produttivo si stimano i costi indiretti totali del periodo (CI<sub>reparto</sub>).</li>
+          <li><strong>Passo 2.</strong> Si sceglie per ciascun reparto la base di allocazione più appropriata (ore macchina, ore MOD, costo MOD, costo MP, ecc.) e si stima la quantità totale di base disponibile (B<sub>reparto</sub>).</li>
+          <li><strong>Passo 3.</strong> Si calcola il coefficiente del reparto: <strong>Coeff<sub>reparto</sub> = CI<sub>reparto</sub> / B<sub>reparto</sub></strong>.</li>
+        </ul>
+
+        <p>Per allocare i costi indiretti a una specifica commessa, si moltiplica il coefficiente di ciascun reparto per la quantità di base assorbita dalla commessa in quel reparto, e si sommano i contributi:</p>
+
+        <p><strong>CI<sub>commessa</sub> = Σ<sub>r</sub> (Coeff<sub>r</sub> × Base<sub>r,commessa</sub>)</strong></p>
+
+        <p><strong>Esempio.</strong> Cremona Ltd ha tre reparti. <em>Reparto A</em>: CI = €39.000, base = ore macchina (12.000 h) → Coeff<sub>A</sub> = 39.000 / 12.000 = <strong>€3,25/ora macchina</strong>. <em>Reparto B</em>: CI = €36.000, base = ore macchina (8.000 h) → Coeff<sub>B</sub> = <strong>€4,50/ora macchina</strong>. <em>Reparto C</em>: CI = €18.000, base = costo MOD (€24.000) → Coeff<sub>C</sub> = 18.000 / 24.000 = <strong>75% del costo MOD</strong>. Per una commessa che impegna 108 ore macchina in A, 75 in B e ha €300 di MOD in C, gli indiretti allocati sono: 108×3,25 + 75×4,50 + 75%×300 = 351 + 337,50 + 225 = <strong>€913,50</strong>.</p>
+
+        <p>Rispetto alla base unica, il sistema dipartimentale è significativamente più accurato — perché tiene conto della diversa natura dei reparti — ma significativamente meno complesso dell'ABC, che richiede di identificare e misurare decine di attività e cost driver. È quindi una soluzione equilibrata, particolarmente adatta a imprese manifatturiere di media dimensione con un numero limitato di reparti produttivi.</p>
+      `
+    },
+    {
+      id: "ribaltamento-ausiliari",
+      title: "Il ribaltamento dei centri ausiliari sui centri produttivi",
+      content: `
+        <p>Nelle imprese strutturate in centri di responsabilità, alcuni centri non producono direttamente i prodotti destinati al cliente, ma erogano servizi di supporto agli altri centri: il <strong>magazzino e logistica interna</strong>, i <strong>servizi tecnici e di manutenzione</strong>, le <strong>utilities</strong> (energia, vapore, aria compressa). Questi sono i <strong>centri ausiliari</strong> (o <em>service departments</em>). I loro costi non possono essere imputati direttamente alle commesse: prima vanno <strong>ribaltati</strong> sui centri produttivi che ne usufruiscono, e solo successivamente i centri produttivi — ora gravati anche della loro quota di costi ausiliari — possono imputare i costi alle commesse tramite i coefficienti dipartimentali.</p>
+
+        <p>Il procedimento di calcolo si articola in due fasi distinte. Nella <strong>fase di ribaltamento</strong> si sceglie per ciascun centro ausiliario una <strong>base di ribaltamento</strong> che rifletta nel modo più accurato l'uso del servizio da parte dei centri produttivi: il magazzino e la logistica vengono tipicamente ribaltati in base al <em>numero di addetti</em> nei centri produttivi (proxy dei movimenti di materiali necessari); i servizi tecnici e manutenzione in base alle <em>ore macchina</em> dei reparti (proxy del lavoro di manutenzione richiesto); le utilities in base ai <em>consumi effettivi misurati</em> o ai <em>metri quadri occupati</em>. I costi del centro ausiliario vengono quindi distribuiti sui centri produttivi in proporzione alla quota di base utilizzata.</p>
+
+        <p>Nella <strong>fase di calcolo dei coefficienti dei reparti produttivi</strong>, i costi indiretti di ciascun reparto produttivo — ora composti dai costi propri <em>più</em> la quota ricevuta dal ribaltamento degli ausiliari — vengono divisi per la base di allocazione del reparto (ore macchina, ore MOD, ecc.) per ottenere il coefficiente, che viene poi applicato alle commesse come visto nella sezione precedente.</p>
+
+        <p><strong>Esempio.</strong> Alpha Industrial Engineering ha tre reparti produttivi (Lavorazioni Meccaniche, Assemblaggio, Finitura) e due centri ausiliari. <em>Magazzino e logistica</em> con costi €260.000 viene ribaltato in base al numero di addetti (50/35/35 = 120 totali). <em>Servizi tecnici</em> con costi €180.000 viene ribaltato in base alle ore macchina (72.000/18.000/10.000 = 100.000 totali). Le quote ricevute da Lavorazioni Meccaniche sono: 260.000 × 50/120 = €108.333 dal Magazzino e 180.000 × 72/100 = €129.600 dai Servizi tecnici. Sommati ai €520.000 di costi propri, Lavorazioni Meccaniche ha ora €757.933 di costi indiretti totali, da dividere per le 72.000 ore macchina previste → coefficiente di <strong>€10,53/ora macchina</strong>.</p>
+
+        <p>Saltare la fase del ribaltamento — imputando i costi degli ausiliari direttamente alle commesse o, peggio, lasciandoli "non allocati" — produce due errori opposti e simmetrici: <em>sotto-costing</em> delle commesse che assorbono molti servizi ausiliari (e quindi profitti apparenti) e <em>sopra-costing</em> di quelle che ne assorbono pochi. La conseguenza tipica è la promozione commerciale dei prodotti meno profittevoli e l'abbandono di quelli realmente redditizi.</p>
+      `
+    },
+    {
       id: "limiti-tradizionale",
       title: "I limiti dell'approccio tradizionale e la necessità di un nuovo paradigma",
       content: `
@@ -228,6 +267,27 @@ const lecture3 = {
         <p>Un ulteriore vantaggio dell'ABC che va oltre il calcolo dei costi è la sua capacità di generare <strong>informazioni sul costo delle attività e dei processi</strong> che l'approccio tradizionale non produce. Sapere che ogni setup dei macchinari costa €215, che ogni ispezione qualità costa €400, che ogni ordine gestito costa €100: queste informazioni sono preziose per l'analisi dei processi, per identificare attività a basso valore aggiunto da eliminare o semplificare, per valutare l'impatto economico di cambiamenti organizzativi. In questo senso, l'ABC non è solo un sistema di calcolo dei costi, ma anche uno strumento di <em>gestione dei processi</em> e di supporto al miglioramento continuo.</p>
 
         <p>Infine, è importante ricordare che l'ABC, come qualsiasi sistema di allocazione, rimane un'approssimazione della realtà: i cost driver scelti sono la migliore stima disponibile delle cause dei costi, non certezze assolute. Un buon sistema ABC richiede revisione periodica dei driver, aggiornamento dei cost driver rates al variare dei volumi e dei costi, e un forte presidio manageriale per garantire che le informazioni prodotte vengano effettivamente utilizzate nei processi decisionali. Un ABC magnificamente costruito ma ignorato dai manager è uno spreco di risorse; un ABC imperfetto ma utilizzato attivamente per migliorare i processi e le decisioni è uno strumento di creazione di valore.</p>
+      `
+    },
+    {
+      id: "pricing-markup",
+      title: "Pricing con mark-up e decisione di accettazione delle commesse",
+      content: `
+        <p>Il calcolo del costo pieno (full cost) di una commessa serve a due scopi: misurare la redditività della commessa stessa e fornire la base per la determinazione del prezzo di vendita. La strategia di pricing più diffusa nelle aziende che lavorano su commessa è il <strong>cost-plus pricing</strong> con mark-up:</p>
+
+        <p><strong>Prezzo di vendita = Costo di produzione × (1 + mark-up%)</strong></p>
+
+        <p>Il mark-up — tipicamente compreso tra il 20% e il 50% — copre due voci. La prima sono i <strong>costi non assorbiti</strong> nel calcolo del costo di produzione: i costi di distribuzione, amministrazione, R&amp;D, marketing e direzione generale, che non sono allocati alle singole commesse ma vanno comunque coperti dall'attività complessiva dell'impresa. La seconda è il <strong>margine di profitto</strong> atteso dall'azionista. Un mark-up del 32% significa: il 32% di ricavo aggiuntivo rispetto al costo di produzione che, sottratti i costi non assorbiti, lascia un utile per l'impresa.</p>
+
+        <p>Nei mercati competitivi, però, il prezzo calcolato con il mark-up può essere superiore al <strong>prezzo massimo che il cliente è disposto a pagare</strong>. In questi casi l'impresa si trova davanti a una scelta: rinunciare alla commessa o accettarla al prezzo del cliente, sacrificando in parte il margine atteso. La regola decisionale corretta si fonda sul <strong>margine di contribuzione effettivo</strong> della commessa:</p>
+
+        <p><strong>Margine commessa = Prezzo offerto dal cliente − Costo di produzione − Costi variabili extra</strong></p>
+
+        <p>I costi variabili extra includono eventuali oneri aggiuntivi specifici per quella commessa (logistica dedicata, packaging speciale, costi di distribuzione differenziati). Se il margine così calcolato è <strong>positivo</strong>, accettare la commessa contribuisce comunque alla copertura dei costi fissi non assorbiti e al profitto: meglio guadagnare qualcosa che niente, purché la commessa non saturi capacità produttiva sottraendola ad altre più redditizie. Se il margine è <strong>negativo</strong>, la commessa va rifiutata: accettarla peggiorerebbe il risultato d'esercizio.</p>
+
+        <p><strong>Esempio.</strong> Dillon Engineering valuta due commesse alternative. <em>Ranelagh</em>: costo di produzione €192.300, prezzo offerto dal cliente €220.000 → margine = 220.000 − 192.300 = <strong>€27.700</strong>. <em>Rathmines</em>: costo di produzione €166.900, prezzo offerto €200.000 ma con €15.000 di costi variabili distributivi addizionali → margine = 200.000 − 166.900 − 15.000 = <strong>€18.100</strong>. Entrambe sarebbero accettabili (margine positivo), ma <strong>Ranelagh è preferibile</strong> perché contribuisce di €9.600 in più alla copertura dei costi fissi e al profitto.</p>
+
+        <p>Una nota importante: la decisione di accettare una commessa a prezzo "sotto costo pieno" è razionale solo nel <em>breve periodo</em> e in presenza di <em>capacità inutilizzata</em>. Se l'impresa opera a piena capacità o se accettare la commessa significa rinunciare ad altre più profittevoli, la regola va integrata con l'analisi del <em>costo opportunità</em>: il margine va confrontato con quello che si sarebbe ottenuto destinando le stesse risorse all'alternativa migliore.</p>
       `
     }
   ]

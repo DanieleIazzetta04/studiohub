@@ -352,19 +352,21 @@
 }
 
 .chart-dual {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-direction: column;
   gap: 0;
-  padding: 0.6rem 0.3rem 0;
+  padding: 0.6rem 0.6rem 0;
   border-bottom: 1px solid var(--border-color);
 }
 
 .chart-half {
-  padding: 0.8rem 0.8rem 0;
+  padding: 0.8rem 0.6rem 0;
 }
 
 .chart-half + .chart-half {
-  border-left: 1px solid var(--border-color);
+  border-top: 1px solid var(--border-color);
+  margin-top: 0.8rem;
+  padding-top: 1rem;
 }
 
 .chart-half-title {

@@ -330,4 +330,21 @@ ul { list-style: none; }
     background: #fff !important;
   }
   h2, h3, h4 { break-after: avoid; page-break-after: avoid; }
+
+  /* Fix recharts in stampa: legenda con word-wrap (evita "(RT" tagliato)
+     e metric-cards che vanno a capo se troppo strette. */
+  .recharts-legend-wrapper {
+    position: static !important;
+    white-space: normal !important;
+  }
+  .chart-metrics {
+    flex-wrap: wrap !important;
+  }
+  /* Recharts in print: il clipPath interno viene calcolato alla
+     prima misurazione del container e non si aggiorna se il layout
+     cambia (bug noto della ResponsiveContainer). Disabilitiamolo
+     in stampa così le linee non vengono tagliate prematuramente. */
+  .recharts-wrapper [clip-path] {
+    clip-path: none !important;
+  }
 }

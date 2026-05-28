@@ -64,10 +64,10 @@ export function FixedCostChart() {
         {/* CF Totale */}
         <div className="chart-half">
           <div className="chart-half-title">CF Totale — <em>costante</em></div>
-          <ResponsiveContainer width="100%" height={220}>
-            <LineChart data={data} margin={{ top: 8, right: 16, left: 8, bottom: 28 }}>
+          <ResponsiveContainer width="100%" height={220} debounce={50}>
+            <LineChart data={data} margin={{ top: 8, right: 30, left: 8, bottom: 28 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
-              <XAxis dataKey="q" tickFormatter={fmt} tick={{ fontSize: 10 }}>
+              <XAxis dataKey="q" tickFormatter={fmt} tick={{ fontSize: 10 }} interval={0}>
                 <Label value="Quantità (Q)" position="insideBottom" offset={-14} style={{ fontSize: 11, fill: '#64748b' }} />
               </XAxis>
               <YAxis tickFormatter={(v) => `€${(v / 1000).toFixed(0)}K`} tick={{ fontSize: 10 }} width={45} domain={[0, cf * 1.4]} />
@@ -81,10 +81,10 @@ export function FixedCostChart() {
         {/* CF Per unità */}
         <div className="chart-half">
           <div className="chart-half-title">CF Per unità — <em>decresce (economie di scala)</em></div>
-          <ResponsiveContainer width="100%" height={220}>
-            <LineChart data={data} margin={{ top: 8, right: 16, left: 8, bottom: 28 }}>
+          <ResponsiveContainer width="100%" height={220} debounce={50}>
+            <LineChart data={data} margin={{ top: 8, right: 30, left: 8, bottom: 28 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
-              <XAxis dataKey="q" tickFormatter={fmt} tick={{ fontSize: 10 }}>
+              <XAxis dataKey="q" tickFormatter={fmt} tick={{ fontSize: 10 }} interval={0}>
                 <Label value="Quantità (Q)" position="insideBottom" offset={-14} style={{ fontSize: 11, fill: '#64748b' }} />
               </XAxis>
               <YAxis tickFormatter={(v) => `€${v.toFixed(0)}`} tick={{ fontSize: 10 }} width={45} />
@@ -151,10 +151,10 @@ export function VariableCostChart() {
         {/* CV Totale */}
         <div className="chart-half">
           <div className="chart-half-title">CV Totale — <em>cresce linearmente</em></div>
-          <ResponsiveContainer width="100%" height={220}>
-            <LineChart data={data} margin={{ top: 8, right: 16, left: 8, bottom: 28 }}>
+          <ResponsiveContainer width="100%" height={220} debounce={50}>
+            <LineChart data={data} margin={{ top: 8, right: 30, left: 8, bottom: 28 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
-              <XAxis dataKey="q" tickFormatter={fmt} tick={{ fontSize: 10 }}>
+              <XAxis dataKey="q" tickFormatter={fmt} tick={{ fontSize: 10 }} interval={0}>
                 <Label value="Quantità (Q)" position="insideBottom" offset={-14} style={{ fontSize: 11, fill: '#64748b' }} />
               </XAxis>
               <YAxis tickFormatter={(v) => `€${(v / 1000).toFixed(1)}K`} tick={{ fontSize: 10 }} width={48} />
@@ -168,10 +168,10 @@ export function VariableCostChart() {
         {/* CV Per unità */}
         <div className="chart-half">
           <div className="chart-half-title">CV Per unità — <em>costante</em></div>
-          <ResponsiveContainer width="100%" height={220}>
-            <LineChart data={data} margin={{ top: 8, right: 16, left: 8, bottom: 28 }}>
+          <ResponsiveContainer width="100%" height={220} debounce={50}>
+            <LineChart data={data} margin={{ top: 8, right: 30, left: 8, bottom: 28 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
-              <XAxis dataKey="q" tickFormatter={fmt} tick={{ fontSize: 10 }}>
+              <XAxis dataKey="q" tickFormatter={fmt} tick={{ fontSize: 10 }} interval={0}>
                 <Label value="Quantità (Q)" position="insideBottom" offset={-14} style={{ fontSize: 11, fill: '#64748b' }} />
               </XAxis>
               <YAxis tickFormatter={(v) => `€${v}`} tick={{ fontSize: 10 }} width={40}
